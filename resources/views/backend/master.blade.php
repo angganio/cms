@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@yield('title')</title>
-     <link href="{{asset("public/template/edmin/bootstrap/css/bootstrap.min.css")}}" rel="stylesheet">
-     <link href="{{asset("public/template/edmin/bootstrap/css/bootstrap-responsive.min.css")}}" rel="stylesheet">
-     <link href="{{asset("public/template/edmin/css/theme.css")}}" rel="stylesheet">
-     <link href="{{asset("public/template/edmin/images/icons/css/font-awesome.css")}}" rel="stylesheet">
-</head>
-<body>
+@include('backend.header')
  <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
@@ -101,14 +90,4 @@
 			</div>
 		</div><!--/.container-->
 	</div><!--/.wrapper-->
-<div class="footer">
-		<div class="container">
-			<b class="copyright">&copy; CMS Admin {{ date('Y') }}. Template by Edmin - EGrappler.com </b> All rights reserved.
-		</div>
-	</div>
-    <script type="application/javascript" src="{{asset("public/template/edmin/scripts/jquery-1.9.1.min.js")}}"></script>
-    <script type="application/javascript" src="{{asset("public/template/edmin/scripts/jquery-ui-1.10.1.custom.min.js")}}"></script>
-    <script type="application/javascript" src="{{asset("public/template/edmin/bootstrap/js/bootstrap.min.js")}}"></script>
-    <script type="application/javascript" src="{{asset("public/template/edmin/scripts/common.js")}}"></script>
-      @yield('other')
-</body>
+@include('backend.footer')

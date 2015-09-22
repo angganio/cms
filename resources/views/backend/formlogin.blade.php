@@ -23,7 +23,7 @@
 
 				<div class="nav-collapse collapse navbar-inverse-collapse">
 					<ul class="nav pull-right">
-						<li><a href="#">
+						<li><a href="{{ url('password/email') }}">
 							Forgot your password?
 						</a></li>
 					</ul>
@@ -51,6 +51,13 @@
                <div class="alert alert-success">
                 {!! Form::button('x',array('class' => 'close', 'data-dismiss' => 'alert')) !!}
                  {{ Session::get('success') }}
+               </div>
+               @endif
+               
+               @if(Session::has('status'))
+               <div class="alert alert-success">
+                {!! Form::button('x',array('class' => 'close', 'data-dismiss' => 'alert')) !!}
+                 {{ Session::get('status') }}
                </div>
                @endif
                

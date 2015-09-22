@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller
 {
+	protected $redirectTo = '/user/loginUser';
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -18,8 +19,9 @@ class PasswordController extends Controller
     |
     */
 
+	/* Ada disini file nya => \vendor\laravel\framework\src\Illuminate\Foundation\Auth */
     use ResetsPasswords;
-
+	
     /**
      * Create a new password controller instance.
      *
