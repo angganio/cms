@@ -27,6 +27,17 @@ Route::post('/user/listUser', 'backend\AdminUser@listUser');
 Route::get('/user/editUser/{usrid}', 'backend\AdminUser@editUser');
 Route::post('/user/updateUser/', 'backend\AdminUser@updateUser');
 Route::get('/user/logoutUser', 'backend\AdminUser@logoutUser');
+
+Route::get('/cat/editCat/{catid}', 'backend\AdminCat@editCat');
+Route::get('/cat/addCat', 'backend\AdminCat@addCat');
+Route::get('/cat/listCat', 'backend\AdminCat@listCat');
+Route::post('/cat/storeCat', 'backend\AdminCat@storeCat');
+Route::get('/cat/delCat/{catid}', 'backend\AdminCat@delCat');
+Route::post('/cat/updateCat', 'backend\AdminCat@updateCat');
+Route::get('cat', function () {
+	 return Redirect::to('/cat/listCat');
+});
+
 });
 Route::post('/user/authUser', 'backend\AdminUser@authUser');
 Route::get('/user/loginUser', 'backend\AdminUser@loginUser');
