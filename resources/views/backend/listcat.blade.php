@@ -2,6 +2,7 @@
 @section('title', $title)
 @section('page_title', $page_title)
 @section('content')
+@inject('myclass', 'App\Libraries\myclass')
       <div class="btn-group pull-right" data-toggle="buttons-radio">
       <a href="<?php echo url('/cat/addCat'); ?>" class="btn btn-primary"><i class="menu-icon icon-plus"></i> Create Category</a>
       </div>
@@ -35,7 +36,7 @@
     <?php echo $row->desc; ?>
  	</td>
     <td align="center">
-    <?php echo $row->status; ?>
+    <?php echo  $myclass->display_status($row->status); ?>
  	</td>
     <td>
     <div class="btn-group">

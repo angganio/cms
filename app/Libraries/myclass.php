@@ -25,7 +25,7 @@ public function gen_cat_tree($id,$level)
      			endforeach;   
 }
 
-function gen_cat()
+public function gen_cat()
 {
 	$this->cat['0']=  'Parent';
 	$query = DB::select( DB::raw("SELECT * FROM m_cat WHERE pid =0 ORDER BY catid, pid ASC") );
@@ -34,6 +34,15 @@ function gen_cat()
 			$this->gen_cat_tree($row->catid,1);
 	endforeach;
 	return $this->cat;      
+}
+
+public function display_status($code)
+{
+	
+	$query = DB::select( DB::raw("SELECT * FROM m_status WHERE code ='$code'") );
+	foreach($query as $row)
+			
+	return $row->desc;      
 }
 	
 	
