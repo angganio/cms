@@ -48,6 +48,16 @@ Route::post('/art/updateArt', 'backend\AdminArt@updateArt');
 Route::get('art', function () {
 	 return Redirect::to('/art/listArt');
 });
+/* Status*/
+Route::get('/status/editStatus/{code}', 'backend\AdminStatus@editStatus');
+Route::get('/status/addStatus', 'backend\AdminStatus@addStatus');
+Route::get('/status/listStatus', 'backend\AdminStatus@listStatus');
+Route::post('/status/storeStatus', 'backend\AdminStatus@storeStatus');
+Route::get('/status/delStatus/{code}', 'backend\AdminStatus@delStatus');
+Route::post('/status/updateStatus', 'backend\AdminStatus@updateStatus');
+Route::get('status', function () {
+	 return Redirect::to('/status/listStatus');
+});
 
 });
 Route::post('/user/authUser', 'backend\AdminUser@authUser');
