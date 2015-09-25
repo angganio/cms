@@ -145,7 +145,7 @@ var $code = array('3','4');
 	{
 		$art =  m_art::find($artid);
 		$page_title = "Edit Article";
-		
+
 		$title = "Admin - Edit Article ";
 		$button_name = "Update Article";
 		$url = 'art/updateArt';

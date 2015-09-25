@@ -1,6 +1,6 @@
 @extends('backend.master')
 @section('title', $title)
-@section('page_title', $page_title)
+@section('page_title', $page_title.' '.$art->title)
 @section('content')
     {!! Form::open(['url' => $url, 'method' => 'post', 'class' => 'form-horizontal row-fluid','files' => true]) !!}
     
