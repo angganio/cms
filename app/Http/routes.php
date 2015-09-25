@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function() { 
 
+/* User */
 Route::get('user', function () {
 	 return Redirect::to('/user/listUser');
 });
@@ -27,7 +28,7 @@ Route::post('/user/listUser', 'backend\AdminUser@listUser');
 Route::get('/user/editUser/{usrid}', 'backend\AdminUser@editUser');
 Route::post('/user/updateUser/', 'backend\AdminUser@updateUser');
 Route::get('/user/logoutUser', 'backend\AdminUser@logoutUser');
-
+/* Category */
 Route::get('/cat/editCat/{catid}', 'backend\AdminCat@editCat');
 Route::get('/cat/addCat', 'backend\AdminCat@addCat');
 Route::get('/cat/listCat', 'backend\AdminCat@listCat');
@@ -36,6 +37,16 @@ Route::get('/cat/delCat/{catid}', 'backend\AdminCat@delCat');
 Route::post('/cat/updateCat', 'backend\AdminCat@updateCat');
 Route::get('cat', function () {
 	 return Redirect::to('/cat/listCat');
+});
+/* Article*/
+Route::get('/art/editArt/{artid}', 'backend\AdminArt@editArt');
+Route::get('/art/addArt', 'backend\AdminArt@addArt');
+Route::get('/art/listArt', 'backend\AdminArt@listArt');
+Route::post('/art/storeArt', 'backend\AdminArt@storeArt');
+Route::get('/art/delArt/{artid}', 'backend\AdminArt@delArt');
+Route::post('/art/updateArt', 'backend\AdminArt@updateArt');
+Route::get('art', function () {
+	 return Redirect::to('/art/listArt');
 });
 
 });
