@@ -6,7 +6,11 @@
     <div class="control-group">
     {!! Form::label('txt_code',  'Status Code', array('class' => 'control-label')) !!}
 		<div class="controls">
+         @if(isset($status))
     		{!! Form::text('txt_code', isset($status)?$status->code:'', array('class' => 'span8','readonly' => 'readonly')) !!}
+         @else
+         	{!! Form::text('txt_code', isset($status)?$status->code:'', array('class' => 'span8')) !!}
+         @endif
 		<span class="help-inline"></span>
 		</div>
 	</div>
@@ -38,5 +42,6 @@
     {!! Form::close() !!}	
 @endsection
 @section('other')
-<script type="application/javascript" src="{{asset("public/bootstrap_plugin/bootstrap-colorpicker-master/jqColorPicker.min.js")}}"></script>
+<script type="application/javascript" src="{{asset("public/bootstrap_plugin/tinyColorPicker-master/jqColorPicker.min.js")}}"></script>
+
 @endsection

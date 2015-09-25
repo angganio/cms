@@ -117,17 +117,18 @@ var $rules = array('txt_desc' => 'required');
 	
 	public function updateCat(Request $request)
 	{
+		$catid = Input::get('txt_catid');
 		
 		$validator = Validator::make($request->all(), $this->rules);
 		$validator->setAttributeNames($this->niceNames); 
 		
 		if ($validator->fails()) {
-            return redirect('cat/addCat')
+            return redirect('cat/editCat/'.$catid)
                         ->withErrors($validator)
                         ->withInput();
         }
 		
-		$catid = Input::get('txt_catid');
+		
 		$cat =  m_cat::find($catid);
 		
 		$cat->desc = Input::get('txt_desc');

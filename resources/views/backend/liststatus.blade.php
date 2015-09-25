@@ -13,6 +13,7 @@
 					<tr>
 						<th>Status Code</th>
 						<th>Description</th>
+                        <th>Color</th>
                         <th>Options</th>
 					</tr>
 				</thead>
@@ -21,6 +22,7 @@
 					<tr>
 						<th>Status Code</th>
 						<th>Description</th>
+                        <th>Color</th>
 						<th>Options</th>
 					</tr>
 				</tfoot>  
@@ -32,6 +34,9 @@
  	</td>
     <td>
     <?php echo $row->desc; ?>
+ 	</td>
+    <td>
+    <?php echo $row->color; ?>
  	</td>
     <td>
     <div class="btn-group">
@@ -61,7 +66,7 @@
 $(document).ready(function() {
     $('#cat').DataTable({
   "columnDefs": [
-    { "orderable": false, "targets": 2 }
+    { "orderable": false, "targets": 3 }
   ]
 });
 } );
