@@ -59,15 +59,20 @@ Route::get('status', function () {
 	 return Redirect::to('/status/listStatus');
 });
 /* Gallery*/
-Route::get('/gallery/editGallery/{code}', 'backend\AdminGallery@editGallery');
+Route::get('/gallery/editGallery/{id_gallery}', 'backend\AdminGallery@editGallery');
 Route::get('/gallery/addGallery', 'backend\AdminGallery@addGallery');
 Route::get('/gallery/listGallery', 'backend\AdminGallery@listGallery');
 Route::post('/gallery/storeGallery', 'backend\AdminGallery@storeGallery');
-Route::get('/gallery/delGallery/{code}', 'backend\AdminGallery@delGallery');
+Route::get('/gallery/delGallery/{id_gallery}', 'backend\AdminGallery@delGallery');
 Route::post('/gallery/updateGallery', 'backend\AdminGallery@updateGallery');
 Route::get('gallery', function () {
 	 return Redirect::to('/gallery/listGallery');
 });
+Route::get('/gallery/addPhoto/{id_gallery}', 'backend\AdminGallery@addPhoto');
+Route::get('/gallery/editPhoto/{id_gallery}/{id_item}', 'backend\AdminGallery@editPhoto');
+Route::post('/gallery/updatePhoto', 'backend\AdminGallery@updatePhoto');
+Route::get('/gallery/delPhoto/{id_gallery}/{id_item}', 'backend\AdminGallery@delPhoto');
+Route::post('/gallery/storePhoto', 'backend\AdminGallery@storePhoto');
 });
 Route::post('/user/authUser', 'backend\AdminUser@authUser');
 Route::get('/user/loginUser', 'backend\AdminUser@loginUser');

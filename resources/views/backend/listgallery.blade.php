@@ -13,6 +13,7 @@
 					<tr>
 						<th>ID Gallery</th>
 						<th>Name</th>
+                        <th>Status</th>
                         <th>Options</th>
 					</tr>
 				</thead>
@@ -21,6 +22,7 @@
 					<tr>
 						<th>ID Gallery</th>
 						<th>Name</th>
+                        <th>Status</th>
 						<th>Options</th>
 					</tr>
 				</tfoot>  
@@ -33,6 +35,9 @@
     <td>
     <?php echo $row->name; ?>
  	</td>
+     <td>
+    <?php echo $myclass->display_status($row->status); ?>
+ 	</td>
     <td>
     <div class="btn-group">
   <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -40,6 +45,7 @@
   </button>
   <ul class="dropdown-menu" role="menu">
     <li><a href="<?php echo asset('gallery/editGallery').'/'.$row->id_gallery; ?>"><i class="menu-icon icon-edit"></i> Edit</a></li>
+     <li><a href="<?php echo asset('gallery/addPhoto').'/'.$row->id_gallery; ?>"><i class="menu-icon icon-picture"></i> Add photo</a></li>
     <li><a title="Delete Gallery <?php echo $row->id_gallery; ?> - <?php echo $row->name; ?>" href="<?php echo asset('gallery/delGallery').'/'.$row->id_gallery; ?>" id="confirm"><i class="menu-icon icon-trash"></i> Delete</a></li>
   </ul>
 </div>

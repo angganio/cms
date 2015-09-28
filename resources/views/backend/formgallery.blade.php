@@ -19,6 +19,14 @@
 		</div>
 	</div>
     
+     <div class="control-group">
+    {!! Form::label('cb_status', 'Status', array('class' => 'control-label')) !!}
+		<div class="controls">
+    	{!! Form::select('cb_status', $status,isset($art)?$art->status:'',array('class' => 'span8')); !!}
+		<span class="help-inline"></span>
+		</div>
+	</div>
+    
     <div class="control-group">
 		<div class="controls">
          <a class="btn btn-danger" href="{{ asset('gallery') }}">Cancel</a>&nbsp;

@@ -55,7 +55,7 @@ var $rules_updated = array('txt_desc' => 'required');
         }
 		
 		$status = new m_status;
-		
+		$status->code = Input::get('txt_code');
 		$status->desc = Input::get('txt_desc');
 		$status->addby = Session::get('usrid');
 		
