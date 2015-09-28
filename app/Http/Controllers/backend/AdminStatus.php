@@ -30,6 +30,7 @@ var $niceNames = array(
 		'txt_code' => 'Code');
 		
 var $rules = array('txt_code' => 'required|unique:m_status,code','txt_desc' => 'required');		
+var $rules_updated = array('txt_desc' => 'required');	
 
     public function addStatus()
     {
@@ -107,7 +108,7 @@ var $rules = array('txt_code' => 'required|unique:m_status,code','txt_desc' => '
 	{
 		$code = Input::get('txt_code');
 		
-		$validator = Validator::make($request->all(), $this->rules);
+		$validator = Validator::make($request->all(), $this->rules_updated);
 		$validator->setAttributeNames($this->niceNames); 
 		
 		if ($validator->fails()) {

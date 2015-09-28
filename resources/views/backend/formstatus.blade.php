@@ -26,7 +26,7 @@
      <div class="control-group">
     {!! Form::label('txt_color', 'Color', array('class' => 'control-label')) !!}
 		<div class="controls">
-    	{!! Form::text('txt_color', isset($status)?$status->color:'', array('class' => 'span8','maxlength' => '100')) !!}
+    	{!! Form::text('txt_color', isset($status)?$status->color:'', array('class' => 'span8','maxlength' => '8')) !!}
 		<span class="help-inline"></span>
 		</div>
 	</div>
@@ -34,7 +34,7 @@
     
     <div class="control-group">
 		<div class="controls">
-         <a class="btn btn-danger" href="{{ asset('cat') }}">Cancel</a>&nbsp;
+         <a class="btn btn-danger" href="{{ asset('status') }}">Cancel</a>&nbsp;
        {!! Form::submit($button_name,array('class' => 'btn btn-primary')) !!}
         </div>
     </div>
@@ -42,6 +42,4 @@
     {!! Form::close() !!}	
 @endsection
 @section('other')
-<script type="application/javascript" src="{{asset("public/bootstrap_plugin/tinyColorPicker-master/jqColorPicker.min.js")}}"></script>
-
 @endsection

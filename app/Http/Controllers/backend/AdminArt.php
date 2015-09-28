@@ -39,7 +39,7 @@ var $rules = array(
 
 var $rules_thumb = array('txt_thumb' =>'required|image|mimes:jpeg,jpg,bmp,png,gif|max:3000');	
 
-var $code = array('3','4');
+var $code = array('2','3');
     public function addArt()
     {
 		$page_title = "Add Article";

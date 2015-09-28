@@ -58,7 +58,16 @@ Route::post('/status/updateStatus', 'backend\AdminStatus@updateStatus');
 Route::get('status', function () {
 	 return Redirect::to('/status/listStatus');
 });
-
+/* Gallery*/
+Route::get('/gallery/editGallery/{code}', 'backend\AdminGallery@editGallery');
+Route::get('/gallery/addGallery', 'backend\AdminGallery@addGallery');
+Route::get('/gallery/listGallery', 'backend\AdminGallery@listGallery');
+Route::post('/gallery/storeGallery', 'backend\AdminGallery@storeGallery');
+Route::get('/gallery/delGallery/{code}', 'backend\AdminGallery@delGallery');
+Route::post('/gallery/updateGallery', 'backend\AdminGallery@updateGallery');
+Route::get('gallery', function () {
+	 return Redirect::to('/gallery/listGallery');
+});
 });
 Route::post('/user/authUser', 'backend\AdminUser@authUser');
 Route::get('/user/loginUser', 'backend\AdminUser@loginUser');

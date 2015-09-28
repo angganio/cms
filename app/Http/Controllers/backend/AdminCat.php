@@ -29,6 +29,7 @@ class AdminCat extends Controller
 var $niceNames = array(
     	'txt_desc' => 'Description');
 var $rules = array('txt_desc' => 'required');		
+var $code = array('0','1');
 
     public function addCat()
     {
@@ -37,7 +38,8 @@ var $rules = array('txt_desc' => 'required');
 		$button_name = "Create Category";
 		$url = 'cat/storeCat';
 		
-		$status = m_status::lists('desc','code');
+		//$status = m_status::lists('desc','code');
+		$status = m_status::wherein('code', $this->code)->lists('desc','code');
 		
 		$myclass = new myclass;
 		$cb_parent = $myclass->gen_cat();
@@ -105,7 +107,8 @@ var $rules = array('txt_desc' => 'required');
 		$button_name = "Update Category";
 		$url = 'cat/updateCat';
 	
-		$status = m_status::lists('desc','code');
+		//$status = m_status::lists('desc','code');
+		$status = m_status::wherein('code', $this->code)->lists('desc','code');
 		
 		$myclass = new myclass;
 		$cb_parent = $myclass->gen_cat();
