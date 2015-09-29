@@ -14,7 +14,7 @@
      <div class="control-group">
     {!! Form::label('cb_parent', 'Parent', array('class' => 'control-label')) !!}
 		<div class="controls">
-    	{!! Form::select('cb_parent',$cb_parent,isset($cat)?$cat->parent:'',array('class' => 'span8')); !!}
+    	{!! Form::select('cb_parent',$cb_parent,isset($cat)?$cat->pid:'',array('class' => 'span8')); !!}
 		<span class="help-inline"></span>
 		</div>
 	</div>
