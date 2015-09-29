@@ -34,7 +34,7 @@
 <div class="span3">
   <div class="sidebar">
     <ul class="widget widget-menu unstyled">
-      <li class="#"> <a href="#"> <i class="menu-icon icon-dashboard"></i> Dashboard </a> </li>
+      <li class="@if(Request::segment(1)== 'dashboard') {{ 'active' }} @endif"> <a href="{{ url('/dashboard/') }}"> <i class="menu-icon icon-dashboard"></i> Dashboard </a> </li>
       <li class="@if(Request::segment(1)== 'user') {{ 'active' }} @endif"> <a href="{{ url('/user/') }}"> <i class="menu-icon icon-user"></i> Users </a></li>
       <li class="@if(Request::segment(1)== 'cat') {{ 'active' }} @endif"> <a href="{{ url('/cat/') }}"> <i class="menu-icon icon-tags"></i> Categories </a></li>
       <li class="@if(Request::segment(1)== 'art') {{ 'active' }} @endif"> <a href="{{ url('/art/') }}"> <i class="menu-icon icon-book"></i> Articles </a></li>

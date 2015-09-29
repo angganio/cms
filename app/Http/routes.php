@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function() { 
-
+Route::get('/dashboard', 'backend\AdminDashboard@listDashboard');
 /* User */
 Route::get('user', function () {
 	 return Redirect::to('/user/listUser');
