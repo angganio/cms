@@ -73,6 +73,14 @@ Route::get('/gallery/editPhoto/{id_gallery}/{id_item}', 'backend\AdminGallery@ed
 Route::post('/gallery/updatePhoto', 'backend\AdminGallery@updatePhoto');
 Route::get('/gallery/delPhoto/{id_gallery}/{id_item}', 'backend\AdminGallery@delPhoto');
 Route::post('/gallery/storePhoto', 'backend\AdminGallery@storePhoto');
+/* Upload file*/
+Route::post('/upload/storeFile/', 'backend\AdminFile@storeFile');
+Route::get('/upload/listFile/', 'backend\AdminFile@listFile');
+Route::get('/upload/delFile/{files}', 'backend\AdminFile@delFile');
+Route::get('upload', function () {
+	 return Redirect::to('/upload/listFile');
+});
+
 });
 Route::post('/user/authUser', 'backend\AdminUser@authUser');
 Route::get('/user/loginUser', 'backend\AdminUser@loginUser');

@@ -62,7 +62,7 @@ var $code = array('2','3');
 		$gallery->name = Input::get('txt_name');
 		$gallery->addby = Session::get('usrid');
 		$gallery->status = Input::get('cb_status');
-		
+		$gallery->slug = str_slug(Input::get('txt_name'), '-');
 		
 		if ($gallery->save())
 			{
@@ -140,7 +140,7 @@ var $code = array('2','3');
 		$gallery->name = Input::get('txt_name');
 		$gallery->status = Input::get('cb_status');
 		$gallery->chby = Session::get('usrid');
-
+		$gallery->slug = str_slug(Input::get('txt_name'), '-');
 		
 		if ($gallery->save())
 			{

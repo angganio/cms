@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2015 at 04:47 PM
+-- Generation Time: Sep 28, 2015 at 03:54 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -19,6 +19,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `cms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery_item`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_item` (
+  `id_item` int(11) NOT NULL,
+  `id_gallery` int(11) NOT NULL,
+  `caption` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `addby` varchar(20) NOT NULL,
+  `chby` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COMMENT='Tabel gallery item';
 
 -- --------------------------------------------------------
 
@@ -62,6 +79,13 @@ CREATE TABLE IF NOT EXISTS `m_articles` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Tabel Artikel';
 
+--
+-- Dumping data for table `m_articles`
+--
+
+INSERT INTO `m_articles` (`id_artikel`, `catid`, `title`, `status`, `summary`, `content`, `thumb`, `slug`, `id_gallery`, `tag`, `addby`, `created_at`, `chby`, `updated_at`) VALUES
+(1, 4, 'Test 1', 3, '<p>Test 1</p>', '<p>Test 1</p>', 'public/uploads/images/25092015145223.IMG_4414_resized.jpg', 'test-1', '1', '2', 'dian', '2015-09-25 07:52:23', '', '2015-09-25 07:52:23');
+
 -- --------------------------------------------------------
 
 --
@@ -91,6 +115,23 @@ INSERT INTO `m_cat` (`catid`, `pid`, `desc`, `slug`, `status`, `addby`, `created
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `m_gallery`
+--
+
+CREATE TABLE IF NOT EXISTS `m_gallery` (
+  `id_gallery` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `status` int(1) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `addby` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `chby` varchar(20) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COMMENT='Tabel foto gallery';
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `m_status`
 --
 
@@ -109,10 +150,10 @@ CREATE TABLE IF NOT EXISTS `m_status` (
 --
 
 INSERT INTO `m_status` (`code`, `desc`, `color`, `addby`, `created_at`, `chby`, `updated_at`) VALUES
-(0, 'Disable', '', 'imam', '2015-09-21 09:48:46', '', '2015-09-21 09:48:46'),
-(1, 'Enable', '', 'imam', '2015-09-21 09:48:46', '', '2015-09-21 09:48:46'),
-(3, 'Publish', '', 'imam', '2015-09-25 06:44:45', '', '2015-09-25 06:44:45'),
-(4, 'Draft', '', 'imam', '2015-09-25 06:45:12', '', '2015-09-25 06:45:12');
+(0, 'Disable', '#009900', 'imam', '2015-09-21 09:48:46', 'dian', '2015-09-25 10:00:40'),
+(1, 'Enable', '', 'dian', '2015-09-27 23:16:23', '', '2015-09-27 23:16:23'),
+(2, 'Publish', '', 'imam', '2015-09-25 06:44:45', '', '2015-09-28 02:41:35'),
+(3, 'Draft', '', 'imam', '2015-09-25 06:45:12', '', '2015-09-28 02:41:35');
 
 -- --------------------------------------------------------
 
@@ -141,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `m_user` (
 --
 
 INSERT INTO `m_user` (`usrid`, `id_grp`, `password`, `dispname`, `email`, `foto`, `status`, `last_login`, `addby`, `created_at`, `chby`, `updated_at`, `remember_token`) VALUES
-('dian', 1, '$2y$10$GHLfXfM85he5WHip1iyHw.EXojkfL74GRymgGiUOXxacWjWr8TDay', 'Dian', 'wiguna.imam@gmail.com', 'public/uploads/users/19092015143626.smlogo.png', 1, '0000-00-00 00:00:00', 'imam', '2015-09-19 15:39:12', 'imam', '2015-09-25 02:03:30', 'T3uOquFjTxqK1jqWzDcc6NxjFJ7hIg1Y5AOQxvInCH7iasYGf4pxhHBaEqO7'),
+('dian', 1, '$2y$10$GHLfXfM85he5WHip1iyHw.EXojkfL74GRymgGiUOXxacWjWr8TDay', 'Dian', 'wiguna.imam@gmail.com', 'public/uploads/users/19092015143626.smlogo.png', 1, '0000-00-00 00:00:00', 'imam', '2015-09-19 15:39:12', 'imam', '2015-09-25 10:11:57', 'x7S65L8OO3K0A6qmrmkSBjdd5pDWH6V2ba9rDGGo80L5yIoLKzYm4GNTbe1j'),
 ('imamwiguna', 1, '$2y$10$qPTLFikSrpxMzi4ifgQD0OM0Q.cb9T6ojWzEuAIKeeDUnPGf15gAS', 'Imam Wiguna1', 'imam@gmail.com', 'public/uploads/users/18092015161534.avatar.fw.png', 0, '0000-00-00 00:00:00', '', '2015-09-18 17:25:10', 'dian', '2015-09-22 22:14:46', ''),
 ('imamwiguna3', 1, '$2y$10$qyWyfXTLGWKE8NxHOqCwBux8iYxhextMkzCbbnh3TBHXLZfjwGf26', 'Imam Wiguna', 'imam@gmail.com', 'public/uploads/users/21092015082945.logoui.jpg', 0, '0000-00-00 00:00:00', 'imam', '2015-09-21 08:42:53', '', '2015-09-21 01:42:53', ''),
 ('yuan', 2, '$2y$10$tzZcAWdiQDuUZolzJbqzVeYATxweNUbynVsl9zvV7OdOeClNs5ENO', 'Yuan1', 'imam1@gmail.com', 'public/uploads/users/21092015081525.logo_baru_wgi_lengkap1.png', 0, '0000-00-00 00:00:00', 'imam', '2015-09-21 09:38:49', 'imam', '2015-09-21 08:05:54', '');
@@ -186,6 +227,12 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 --
 
 --
+-- Indexes for table `gallery_item`
+--
+ALTER TABLE `gallery_item`
+  ADD PRIMARY KEY (`id_item`);
+
+--
 -- Indexes for table `m_articles`
 --
 ALTER TABLE `m_articles`
@@ -196,6 +243,12 @@ ALTER TABLE `m_articles`
 --
 ALTER TABLE `m_cat`
   ADD PRIMARY KEY (`catid`);
+
+--
+-- Indexes for table `m_gallery`
+--
+ALTER TABLE `m_gallery`
+  ADD PRIMARY KEY (`id_gallery`);
 
 --
 -- Indexes for table `m_status`
@@ -226,6 +279,11 @@ ALTER TABLE `password_resets`
 --
 
 --
+-- AUTO_INCREMENT for table `gallery_item`
+--
+ALTER TABLE `gallery_item`
+  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
 -- AUTO_INCREMENT for table `m_articles`
 --
 ALTER TABLE `m_articles`
@@ -235,6 +293,11 @@ ALTER TABLE `m_articles`
 --
 ALTER TABLE `m_cat`
   MODIFY `catid` int(3) NOT NULL AUTO_INCREMENT COMMENT 'ID kategori',AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `m_gallery`
+--
+ALTER TABLE `m_gallery`
+  MODIFY `id_gallery` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
