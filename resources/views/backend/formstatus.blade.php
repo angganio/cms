@@ -23,12 +23,15 @@
 		</div>
 	</div>
 
-     <div class="control-group">
+
+     <div class="control-group color">
     {!! Form::label('txt_color', 'Color', array('class' => 'control-label')) !!}
-		<div class="controls">
-    	{!! Form::text('txt_color', isset($status)?$status->color:'', array('class' => 'span8','maxlength' => '8')) !!}
-		<span class="help-inline"></span>
+    <div class="controls">
+		<div class="input-append">
+    	{!! Form::text('txt_color', isset($status)?$status->color:'#FFFFFF', array('class' => 'span8','maxlength' => '8')) !!}
+		<span class="add-on"><i></i></span>
 		</div>
+      </div>
 	</div>
 
     
@@ -42,4 +45,11 @@
     {!! Form::close() !!}	
 @endsection
 @section('other')
+<link href="{{asset("public/bootstrap_plugin/bootstrap-colorpicker-master/dist/css/bootstrap-colorpicker.min.css")}}" rel="stylesheet">
+<script type="text/javascript" language="javascript" src="{{asset("public/bootstrap_plugin/bootstrap-colorpicker-master/dist/js/bootstrap-colorpicker.js")}}"></script>
+<script>
+    $(function(){
+        $('.color').colorpicker();
+    });
+</script>
 @endsection
