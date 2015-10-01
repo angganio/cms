@@ -156,7 +156,7 @@ var $rules = array('txt_usrpic'=>'required|image|mimes:jpeg,jpg,bmp,png,gif|max:
 	{
 		//$users =  m_user::GetByUserID($usrid)->first();
 		$users =  m_user::find($usrid);
-		$page_title = "Add User";
+		$page_title = "Edit User";
 		$title = "Admin - Edit User ".$usrid;
 		$button_name = "Update User";
 		$url = 'user/updateUser';
@@ -289,7 +289,7 @@ var $rules = array('txt_usrpic'=>'required|image|mimes:jpeg,jpg,bmp,png,gif|max:
 			Session::put('usrid',$usrid );
 			Session::put('usrfoto',$users->foto);
 			
-			return Redirect::to('/user/');
+			return Redirect::to('/dashboard/');
 		}
 		return Redirect::to('user/loginUser')->with('error','Could not log in, please check your username and password');
 		

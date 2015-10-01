@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2015 at 10:42 PM
+-- Generation Time: Sep 28, 2015 at 03:54 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -19,6 +19,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `cms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery_item`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_item` (
+  `id_item` int(11) NOT NULL,
+  `id_gallery` int(11) NOT NULL,
+  `caption` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `addby` varchar(20) NOT NULL,
+  `chby` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COMMENT='Tabel gallery item';
 
 -- --------------------------------------------------------
 
@@ -42,6 +59,79 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `m_articles`
+--
+
+CREATE TABLE IF NOT EXISTS `m_articles` (
+  `id_artikel` int(11) NOT NULL,
+  `catid` int(3) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `status` int(1) NOT NULL COMMENT '4= Draft, 3= Publish',
+  `summary` varchar(225) NOT NULL,
+  `content` text NOT NULL,
+  `thumb` varchar(225) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `id_gallery` varchar(10) NOT NULL,
+  `tag` varchar(100) NOT NULL,
+  `addby` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `chby` varchar(20) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Tabel Artikel';
+
+--
+-- Dumping data for table `m_articles`
+--
+
+INSERT INTO `m_articles` (`id_artikel`, `catid`, `title`, `status`, `summary`, `content`, `thumb`, `slug`, `id_gallery`, `tag`, `addby`, `created_at`, `chby`, `updated_at`) VALUES
+(1, 4, 'Test 1', 3, '<p>Test 1</p>', '<p>Test 1</p>', 'public/uploads/images/25092015145223.IMG_4414_resized.jpg', 'test-1', '1', '2', 'dian', '2015-09-25 07:52:23', '', '2015-09-25 07:52:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_cat`
+--
+
+CREATE TABLE IF NOT EXISTS `m_cat` (
+  `catid` int(3) NOT NULL COMMENT 'ID kategori',
+  `pid` int(3) NOT NULL COMMENT 'Parent kategori',
+  `desc` varchar(50) NOT NULL COMMENT 'Deskripsi',
+  `slug` varchar(255) NOT NULL COMMENT 'URL SEO Friendly',
+  `status` int(1) NOT NULL COMMENT 'Status',
+  `addby` varchar(20) NOT NULL COMMENT 'Dibuat oleh',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Tgl buat',
+  `chby` varchar(20) NOT NULL COMMENT 'Diubah oleh',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Tgl ubah'
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='Tabel master kategori';
+
+--
+-- Dumping data for table `m_cat`
+--
+
+INSERT INTO `m_cat` (`catid`, `pid`, `desc`, `slug`, `status`, `addby`, `created_at`, `chby`, `updated_at`) VALUES
+(4, 0, 'Artikel', 'artikel', 1, 'dian', '2015-09-23 01:33:33', '', '2015-09-23 01:33:33'),
+(5, 0, 'Advertorial', 'advertorial', 1, 'dian', '2015-09-23 01:34:00', '', '2015-09-23 01:34:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_gallery`
+--
+
+CREATE TABLE IF NOT EXISTS `m_gallery` (
+  `id_gallery` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `status` int(1) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `addby` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `chby` varchar(20) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COMMENT='Tabel foto gallery';
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `m_status`
 --
 
@@ -60,8 +150,10 @@ CREATE TABLE IF NOT EXISTS `m_status` (
 --
 
 INSERT INTO `m_status` (`code`, `desc`, `color`, `addby`, `created_at`, `chby`, `updated_at`) VALUES
-(0, 'Disable', '', 'imam', '2015-09-21 09:48:46', '', '2015-09-21 09:48:46'),
-(1, 'Enable', '', 'imam', '2015-09-21 09:48:46', '', '2015-09-21 09:48:46');
+(0, 'Disable', '#009900', 'imam', '2015-09-21 09:48:46', 'dian', '2015-09-25 10:00:40'),
+(1, 'Enable', '', 'dian', '2015-09-27 23:16:23', '', '2015-09-27 23:16:23'),
+(2, 'Publish', '', 'imam', '2015-09-25 06:44:45', '', '2015-09-28 02:41:35'),
+(3, 'Draft', '', 'imam', '2015-09-25 06:45:12', '', '2015-09-28 02:41:35');
 
 -- --------------------------------------------------------
 
@@ -75,13 +167,13 @@ CREATE TABLE IF NOT EXISTS `m_user` (
   `password` varchar(255) DEFAULT NULL COMMENT 'Password',
   `dispname` varchar(100) DEFAULT NULL COMMENT 'Nama user',
   `email` varchar(50) DEFAULT NULL COMMENT 'Email',
-  `foto` varchar(100) NOT NULL COMMENT 'Foto user',
+  `foto` varchar(225) NOT NULL COMMENT 'Foto user',
   `status` int(1) DEFAULT NULL COMMENT '0 = tidak aktif, 1 = aktif',
   `last_login` datetime NOT NULL COMMENT 'Login terakhir',
   `addby` varchar(20) NOT NULL COMMENT 'Dibuat oleh',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Tgl buat',
   `chby` varchar(20) NOT NULL COMMENT 'Diubah oleh',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'Tgl ubah',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Tgl ubah',
   `remember_token` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabel master user';
 
@@ -90,8 +182,8 @@ CREATE TABLE IF NOT EXISTS `m_user` (
 --
 
 INSERT INTO `m_user` (`usrid`, `id_grp`, `password`, `dispname`, `email`, `foto`, `status`, `last_login`, `addby`, `created_at`, `chby`, `updated_at`, `remember_token`) VALUES
-('dian', 1, '$2y$10$GHLfXfM85he5WHip1iyHw.EXojkfL74GRymgGiUOXxacWjWr8TDay', 'Dian', 'wiguna.imam@gmail.com', 'public/uploads/users/19092015143626.smlogo.png', 1, '0000-00-00 00:00:00', 'imam', '2015-09-19 15:39:12', 'imam', '2015-09-22 08:40:10', 'bdzJPfzI2zYglonStgY4KDdnpweaGwhuuvoi5zbsxSQbq5b708AYXa7DkLCK'),
-('imamwiguna', 1, '$2y$10$qPTLFikSrpxMzi4ifgQD0OM0Q.cb9T6ojWzEuAIKeeDUnPGf15gAS', 'Imam Wiguna', 'imam@gmail.com', 'public/uploads/users/18092015161534.avatar.fw.png', 0, '0000-00-00 00:00:00', '', '2015-09-18 17:25:10', '', '2015-09-18 09:15:34', ''),
+('dian', 1, '$2y$10$GHLfXfM85he5WHip1iyHw.EXojkfL74GRymgGiUOXxacWjWr8TDay', 'Dian', 'wiguna.imam@gmail.com', 'public/uploads/users/19092015143626.smlogo.png', 1, '0000-00-00 00:00:00', 'imam', '2015-09-19 15:39:12', 'imam', '2015-09-25 10:11:57', 'x7S65L8OO3K0A6qmrmkSBjdd5pDWH6V2ba9rDGGo80L5yIoLKzYm4GNTbe1j'),
+('imamwiguna', 1, '$2y$10$qPTLFikSrpxMzi4ifgQD0OM0Q.cb9T6ojWzEuAIKeeDUnPGf15gAS', 'Imam Wiguna1', 'imam@gmail.com', 'public/uploads/users/18092015161534.avatar.fw.png', 0, '0000-00-00 00:00:00', '', '2015-09-18 17:25:10', 'dian', '2015-09-22 22:14:46', ''),
 ('imamwiguna3', 1, '$2y$10$qyWyfXTLGWKE8NxHOqCwBux8iYxhextMkzCbbnh3TBHXLZfjwGf26', 'Imam Wiguna', 'imam@gmail.com', 'public/uploads/users/21092015082945.logoui.jpg', 0, '0000-00-00 00:00:00', 'imam', '2015-09-21 08:42:53', '', '2015-09-21 01:42:53', ''),
 ('yuan', 2, '$2y$10$tzZcAWdiQDuUZolzJbqzVeYATxweNUbynVsl9zvV7OdOeClNs5ENO', 'Yuan1', 'imam1@gmail.com', 'public/uploads/users/21092015081525.logo_baru_wgi_lengkap1.png', 0, '0000-00-00 00:00:00', 'imam', '2015-09-21 09:38:49', 'imam', '2015-09-21 08:05:54', '');
 
@@ -135,6 +227,30 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 --
 
 --
+-- Indexes for table `gallery_item`
+--
+ALTER TABLE `gallery_item`
+  ADD PRIMARY KEY (`id_item`);
+
+--
+-- Indexes for table `m_articles`
+--
+ALTER TABLE `m_articles`
+  ADD PRIMARY KEY (`id_artikel`);
+
+--
+-- Indexes for table `m_cat`
+--
+ALTER TABLE `m_cat`
+  ADD PRIMARY KEY (`catid`);
+
+--
+-- Indexes for table `m_gallery`
+--
+ALTER TABLE `m_gallery`
+  ADD PRIMARY KEY (`id_gallery`);
+
+--
 -- Indexes for table `m_status`
 --
 ALTER TABLE `m_status`
@@ -158,6 +274,30 @@ ALTER TABLE `m_user_grp`
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`), ADD KEY `password_resets_token_index` (`token`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `gallery_item`
+--
+ALTER TABLE `gallery_item`
+  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `m_articles`
+--
+ALTER TABLE `m_articles`
+  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `m_cat`
+--
+ALTER TABLE `m_cat`
+  MODIFY `catid` int(3) NOT NULL AUTO_INCREMENT COMMENT 'ID kategori',AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `m_gallery`
+--
+ALTER TABLE `m_gallery`
+  MODIFY `id_gallery` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
